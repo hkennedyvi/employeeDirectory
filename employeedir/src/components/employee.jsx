@@ -1,21 +1,20 @@
 import React, { Component } from "react";
 
 class Employee extends Component {
-     //We do not modify the state directly
+  //We do not modify the state directly
   state = {
-    date: 10,
+    date: this.props.employee.date,
     imageUrl: "https://picsum.photos/200",
     tags: ["tag1", "tag2", "tag3"]
   };
 
   //Event Handler
-  handleHire = () => {
-    console.log("Hire Me clicked");
-    //This method tells React the state of this component is going to change
-    //React will schedule a call to the render method
-    this.setState({ date: this.state.date + 1 })
-  }
- 
+  //   handleHire = () => {
+  //     console.log("Hire Me clicked");
+  //     //This method tells React the state of this component is going to change
+  //     //React will schedule a call to the render method
+  //     this.setState({ date: this.state.date + 1 });
+  //   };
 
   //Helper Method
   renderTags() {
@@ -36,14 +35,25 @@ class Employee extends Component {
   };
 
   render() {
+    console.log("props", this.props);
     return (
       <div>
         <img src={this.state.imageUrl} alt="" />
         <span style={this.styles} className={this.getBadgeClasses()}>
           {this.formatDate()}
         </span>
-        <button onClick={this.handleHire} className="btn btn-primary btn-lg">
+        <button
+          onClick={() => this.props.onHire(this.props.employee)}
+          className="btn btn-primary btn-lg"
+        >
           Hire Me
+        </button>
+        {/* Employee raises event, Employees handles event */}
+        <button
+          onClick={() => this.props.onDelete(this.props.employee.id)}
+          className="btn btn-danger btn-sm m-2"
+        >
+          Fire Me
         </button>
         {this.renderTags()}
       </div>
@@ -52,12 +62,12 @@ class Employee extends Component {
 
   getBadgeClasses() {
     let classes = "badge m-2 badge-";
-    classes += this.state.date === 10 ? "warning" : "primary";
+    classes += this.props.employee.date === 10 ? "warning" : "primary";
     return classes;
   }
 
   formatDate() {
-    const { date } = this.state;
+    const { date } = this.props.employee;
     return date === 10 ? <h1>The tenth</h1> : date;
   }
 }
