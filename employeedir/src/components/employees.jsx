@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Employee from "./employee";
+import API from "../utils/API";
 
 class Employees extends Component {
      //Every React component has a property called props
@@ -14,6 +15,12 @@ class Employees extends Component {
       { id: 3, date: 23 },
       { id: 4, date: 30 }
     ]
+  };
+
+  searchEmployees = query => {
+    API.search(query)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
   };
 
   handleReset = () => {
@@ -40,6 +47,12 @@ class Employees extends Component {
   render() {
     return (
       <div>
+        <button 
+        onClick={this.searchEmployees}
+        className="btn btn-primary btn-sm m-2"
+        >
+          Search Employees
+        </button>
         <button
           onClick={this.handleReset}
           className="btn btn-primary btn-sm m-2"
