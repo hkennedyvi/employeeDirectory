@@ -19,19 +19,6 @@ class Employee extends Component {
   //     this.setState({ date: this.state.date + 1 });
   //   };
 
-  //Helper Method
-  renderTags() {
-    if (this.state.tags.length === 0) return <p>there are no tags</p>;
-    return (
-      <ul>
-        {/* Get each tag and map it to a list item  */}
-        {this.state.tags.map(tag => (
-          <li key={tag}>{tag}</li>
-        ))}
-      </ul>
-    );
-  }
-
   styles = {
     fontSize: 100,
     fontWeight: "bold"
@@ -43,17 +30,18 @@ class Employee extends Component {
       <div>
         <ul className="list-group">
           <a href="#" className="list-group-item list-group-item-action">
-            {this.state.name}{this.state.email}{this.state.phone}<img src={this.state.imageUrl} alt="" />
-          </a>
-        </ul>
-        <span style={this.styles} className={this.getBadgeClasses()}>
-          {this.formatDate()}
-        </span>
-        <button
-          onClick={() => this.props.onHire(this.props.employee)}
-          className="btn btn-primary btn-lg"
-        >
-          Hire Me
+            {this.state.name}
+            {this.state.email}
+            {this.state.phone}
+            <img src={this.state.imageUrl} alt="" />
+            <span style={this.styles} className={this.getBadgeClasses()}>
+              {this.formatDate()}
+            </span>
+            <button
+              onClick={() => this.props.onHire(this.props.employee)}
+              className="btn btn-primary btn-lg"
+            >
+              Hire Me
         </button>
         {/* Employee raises event, Employees handles event */}
         <button
@@ -62,7 +50,8 @@ class Employee extends Component {
         >
           Fire Me
         </button>
-        {this.renderTags()}
+          </a>
+        </ul>
       </div>
     );
   }
