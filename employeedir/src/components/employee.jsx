@@ -4,7 +4,10 @@ class Employee extends Component {
   //We do not modify the state directly
   state = {
     date: this.props.employee.date,
-    imageUrl: "https://picsum.photos/200",
+    name: this.props.employee.name,
+    email: this.props.employee.email,
+    phone: this.props.employee.phone,
+    imageUrl: "https://picsum.photos/100",
     tags: ["tag1", "tag2", "tag3"]
   };
 
@@ -35,10 +38,14 @@ class Employee extends Component {
   };
 
   render() {
-    console.log("props", this.props);
+    // console.log("props", this.props);
     return (
       <div>
-        <img src={this.state.imageUrl} alt="" />
+        <ul className="list-group">
+          <a href="#" className="list-group-item list-group-item-action">
+            {this.state.name}{this.state.email}{this.state.phone}<img src={this.state.imageUrl} alt="" />
+          </a>
+        </ul>
         <span style={this.styles} className={this.getBadgeClasses()}>
           {this.formatDate()}
         </span>
