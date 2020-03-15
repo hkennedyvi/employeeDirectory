@@ -72,12 +72,7 @@ class Employees extends Component {
         >
           Reset Employees
         </button>
-        <button
-          onClick={this.handleReset}
-          className="btn btn-primary btn-sm m-2"
-        >
-          Reset
-        </button>
+        
         {this.state.employees.map(employee => (
           <Employee
             key={employee.id}
