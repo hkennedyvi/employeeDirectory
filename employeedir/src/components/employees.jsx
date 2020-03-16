@@ -3,23 +3,19 @@ import Employee from "./employee";
 import API from "../utils/API";
 
 class Employees extends Component {
-  //Every React component has a property called props
-  //Props includes data that we give to a component
-  //State includes data that is local or private to that component
-  //The component that owns a piece of the state
-  //shoud be the one modifying it
+ 
   state = {
     employees: [
-      { id: 1, date: 10, name: "Joe Somebody", email: "gmail", phone: "503-123-4567" },
-      { id: 2, date: 15, name: "John Nobody", email: "gmail", phone: "503-123-4567" },
-      { id: 3, date: 23, name: "Joe Somebody", email: "gmail", phone: "503-123-4567" },
-      { id: 4, date: 30, name: "Joe Somebody", email: "gmail", phone: "503-123-4567" },
-      { id: 5, date: 10, name: "Joe Somebody", email: "gmail", phone: "503-123-4567" },
-      { id: 6, date: 15, name: "Joe Somebody", email: "gmail", phone: "503-123-4567" },
-      { id: 7, date: 23, name: "Joe Somebody", email: "gmail", phone: "503-123-4567" },
-      { id: 8, date: 30, name: "Joe Somebody", email: "gmail", phone: "503-123-4567" },
-      { id: 9, date: 30, name: "Joe Somebody", email: "gmail", phone: "503-123-4567" },
-      { id: 10, date: 30, name: "Joe Somebody", email: "gmail", phone: "503-123-4567" }
+      { id: 1, date: 10, name: "Joe Somebody", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
+      { id: 2, date: 15, name: "Joe Somebody", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
+      { id: 3, date: 23, name: "Joe Somebody", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
+      { id: 4, date: 30, name: "Joe Somebody", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
+      { id: 5, date: 10, name: "Joe Somebody", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
+      { id: 6, date: 15, name: "Joe Somebody", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
+      { id: 7, date: 23, name: "Joe Somebody", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
+      { id: 8, date: 30, name: "Joe Somebody", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
+      { id: 9, date: 30, name: "Joe Somebody", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
+      { id: 10, date: 30, name: "Joe Somebody", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" }
     ]
   };
 
@@ -28,17 +24,24 @@ class Employees extends Component {
   }
 
   findEmployees = () => {
+    const employees = [...this.state.employees];
+    let index = -1;
+    
     API.getEmployees()
       .then(res =>
         res.data.results.map(employee => {
+          index++;
           let email = employee.email;
-          console.log(email);
-          console.log(this.state.employees);
+          let phone = employee.phone;
+          let name = employee.name.first + " " + employee.name.last;
+          let image = employee.picture.thumbnail;
+          employees[index].email = email;
+          employees[index].phone = phone;
+          employees[index].name = name;
+          employees[index].imageUrl = image;
+          this.setState({ employees });
           return email;
-
         })
-        // employee.name, employee.phone, employee.picture))
-        // console.log(res.data.results[0].name, res.data.results[0].email)
       )
       .catch(err => console.log(err));
   };
