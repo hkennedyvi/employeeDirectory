@@ -78,15 +78,12 @@ class Employees extends Component {
 
   handleSort = () => {
     let employees = [...this.state.employees];
-    console.log(employees);
-
-    // employees.map(employee => {
-    //   let name = employee.name + 'BBBB';
-    //   console.log(name);
-    //   return employee;
-    // })
-    // this.setState({ employees });
-    // console.log(employees);
+    employees.sort((a, b) => {
+      let employeeA = a.name.toLowerCase().split(" ")[1];
+      let employeeB = b.name.toLowerCase().split(" ")[1];
+      return (employeeA < employeeB) ? -1 : (employeeA > employeeB) ? 1 : 0;
+    });
+    this.setState({ employees });
   }
 
   render() {
