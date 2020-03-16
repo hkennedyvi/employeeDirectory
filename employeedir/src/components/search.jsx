@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 function Search() {
+   
     const [searchTerm, setSearchTerm] = useState("");
 
     const handleSearch = event => {
@@ -8,8 +9,9 @@ function Search() {
         console.log("You searched for: " + searchTerm);
     }
     const handleInputChange = event => {
-        setSearchTerm(event.target.value);
-        console.log(searchTerm);
+        let userSearch = event.target.value;
+        setSearchTerm(userSearch);
+        console.log(userSearch);
     };
 
     return (

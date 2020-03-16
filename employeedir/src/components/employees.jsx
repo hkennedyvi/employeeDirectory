@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Employee from "./employee";
+// import Employee from "./employee";
 import API from "../utils/API";
 
 class Employees extends Component {
@@ -27,30 +27,20 @@ class Employees extends Component {
     let employees = [...this.state.employees];
     API.getEmployees()
       .then(res => {
-        res.data.results.map((employee, index) => {
-         
-          // employee.email = res.data.results[index].email;
-          // employee.name = res.data.results[index].name.first + " " + res.data.results[index].name.last;
-          // employee.phone = res.data.results[index].phone;
-          // employee.imageUrl = res.data.results[index].picture.thumbnail;
-         
-          // return employee;
 
+        res.data.results.map((employee, index) => {
           let email = employee.email;
           let phone = employee.phone;
           let name = employee.name.first + " " + employee.name.last;
           let image = employee.picture.thumbnail;
+
           employees[index].email = email;
           employees[index].phone = phone;
           employees[index].name = name;
           employees[index].imageUrl = image;
           this.setState({ employees });
-          console.log(employees[index]);
           return employee;
         });
-        // employees.push(...res.data.results);
-        // this.setState({ employees });
-        // console.log(employees);
       })
 
       .catch(err => console.log(err));
@@ -76,10 +66,61 @@ class Employees extends Component {
     this.setState({ employees });
   };
 
+  handleMessage = employeeEmail => {
+    const el = document.createElement('textarea');
+    el.value = employeeEmail;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    alert(employeeEmail + " is copied to your clipboard");
+  }
+
+  handleSort = () => {
+    let employees = [...this.state.employees];
+    console.log(employees);
+
+    // employees.map(employee => {
+    //   let name = employee.name + 'BBBB';
+    //   console.log(name);
+    //   return employee;
+    // })
+    // this.setState({ employees });
+    // console.log(employees);
+  }
+
   render() {
     return (
       <div>
-        <button
+        <table className="table table-hover table-dark">
+          <thead>
+            <tr>
+              <th scope="col">Pic</th>
+              <th scope="col" onClick={this.handleSort}>Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Message/Remove</th>
+>            </tr>
+          </thead>
+          <tbody>
+            {this.state.employees.map(employee => (
+              <tr key={employee.id}>
+                <th scope="row"><img src={employee.imageUrl} alt=""></img></th>
+                <td>{employee.name}</td>
+                <td>{employee.email}</td>
+                <td>{employee.phone}</td>
+                <td>
+                  <button className="btn btn-info" onClick={() => this.handleMessage(employee.email)}><i className="fas fa-envelope"></i></button>
+                  <button className="btn btn-danger" onClick={() => this.handleDelete(employee.id)}><i className="fas fa-times"></i></button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+
+
+        {/* <button
           onClick={this.handleReset}
           className="btn btn-primary btn-sm m-2"
         >
@@ -93,7 +134,7 @@ class Employees extends Component {
             onIncrement={this.handleIncrement}
             employee={employee}
           />
-        ))}
+        ))} */}
       </div>
     );
   }
