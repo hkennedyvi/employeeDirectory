@@ -24,11 +24,18 @@ class Employees extends Component {
   }
 
   findEmployees = () => {
-
+    let employees = [...this.state.employees];
     API.getEmployees()
-      .then(res =>
+      .then(res => {
         res.data.results.map((employee, index) => {
-          let employees = [...this.state.employees];
+         
+          // employee.email = res.data.results[index].email;
+          // employee.name = res.data.results[index].name.first + " " + res.data.results[index].name.last;
+          // employee.phone = res.data.results[index].phone;
+          // employee.imageUrl = res.data.results[index].picture.thumbnail;
+         
+          // return employee;
+
           let email = employee.email;
           let phone = employee.phone;
           let name = employee.name.first + " " + employee.name.last;
@@ -39,9 +46,12 @@ class Employees extends Component {
           employees[index].imageUrl = image;
           this.setState({ employees });
           console.log(employees[index]);
-          return email;
-        })
-      )
+          return employee;
+        });
+        // employees.push(...res.data.results);
+        // this.setState({ employees });
+        // console.log(employees);
+      })
 
       .catch(err => console.log(err));
   };
@@ -60,7 +70,7 @@ class Employees extends Component {
     employees[index].points++;
     this.setState({ employees });
   };
-  //Event handler
+
   handleDelete = employeeId => {
     const employees = this.state.employees.filter(c => c.id !== employeeId);
     this.setState({ employees });
@@ -81,9 +91,6 @@ class Employees extends Component {
             key={employee.id}
             onDelete={this.handleDelete}
             onIncrement={this.handleIncrement}
-            //employee object carries all the data about the employee
-            // date={employee.date}
-            // id={employee.id}
             employee={employee}
           />
         ))}

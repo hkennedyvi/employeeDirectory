@@ -7,7 +7,7 @@ class Employee extends Component {
     name: this.props.employee.name,
     email: this.props.employee.email,
     phone: this.props.employee.phone,
-    imageUrl: "https://picsum.photos/100",
+    imageUrl: this.props.employee.imageUrl,
   };
 
   styles = {
@@ -20,6 +20,7 @@ class Employee extends Component {
     return (
       <div>
         <ul className="list-group">
+          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
           <a href="#" className="list-group-item list-group-item-action">
             {this.state.name}
             {this.state.email}
