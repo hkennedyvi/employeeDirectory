@@ -25,7 +25,7 @@ function Search() {
                     <button type="submit"
                         className="btn btn-success"
                         onClick={handleSearch}
-                    ><i class="fas fa-search"></i></button>
+                    ><i className="fas fa-search"></i></button>
                 </div>
             </form>
         </div>

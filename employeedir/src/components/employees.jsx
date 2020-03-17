@@ -78,20 +78,22 @@ class Employees extends Component {
     alert(employeeEmail + " is copied to your clipboard");
   }
 
+
   handleSort = () => {
     let employees = [...this.state.employees];
     let firstEmployee = employees[0].name.toLowerCase().split(" ")[1];
     let secondEmployee = employees[1].name.toLowerCase().split(" ")[1];
     let asc = firstEmployee > secondEmployee;
     let desc = firstEmployee < secondEmployee;
-    if(asc){
+    let ascendSort = () => {
       employees.sort((a, b) => {
         let employeeA = a.name.toLowerCase().split(" ")[1];
         let employeeB = b.name.toLowerCase().split(" ")[1];
         return (employeeA < employeeB) ? -1 : (employeeA > employeeB) ? 1 : 0;
       });
       this.setState({ employees });
-    }  else if(desc) {
+    };
+    let descendSort = () => {
       employees.sort((b, a) => {
         let employeeA = a.name.toLowerCase().split(" ")[1];
         let employeeB = b.name.toLowerCase().split(" ")[1];
@@ -99,8 +101,15 @@ class Employees extends Component {
       });
       this.setState({ employees });
     }
-    
-    
+
+    if (asc) {
+      ascendSort();
+    } else if (desc) {
+      descendSort();
+    } else {
+      descendSort();
+    }
+
   }
 
   render() {
@@ -115,7 +124,7 @@ class Employees extends Component {
               <th scope="col">Email</th>
               <th scope="col">Phone</th>
               <th scope="col">Message/Remove</th>
->            </tr>
+            </tr>
           </thead>
           <tbody>
             {this.state.employees.map(employee => (
