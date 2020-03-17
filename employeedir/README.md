@@ -4,7 +4,7 @@ An application for viewing and maintaining a company team. Users can sort alphab
 
 ## View Application Here
 
-[Check it out](https://onemeanteam.herokuapp.com/)
+[LIVE DEMO](https://onemeanteam.herokuapp.com/)
 
 ## Built With
 

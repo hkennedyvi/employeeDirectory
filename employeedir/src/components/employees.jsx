@@ -49,21 +49,6 @@ class Employees extends Component {
       .catch(err => console.log(err));
   };
 
-  handleReset = () => {
-    const employees = this.state.employees.map(c => {
-      c.points = 0;
-      return c;
-    });
-    this.setState({ employees });
-  };
-  handleIncrement = employee => {
-    const employees = [...this.state.employees];
-    const index = employees.indexOf(employee);
-    employees[index] = { ...employee };
-    employees[index].points++;
-    this.setState({ employees });
-  };
-
   handleDelete = employeeId => {
     const employees = this.state.employees.filter(c => c.id !== employeeId);
     this.setState({ employees });
@@ -102,7 +87,6 @@ class Employees extends Component {
       });
       this.setState({ employees });
     }
-
     if (asc) {
       ascendSort();
     } else if (desc) {
@@ -110,7 +94,6 @@ class Employees extends Component {
     } else {
       descendSort();
     }
-
   }
 
   render() {
@@ -120,7 +103,7 @@ class Employees extends Component {
         <table className="table table-hover table-dark">
           <thead>
             <tr>
-              <th scope="col">Pic</th>
+              <th scope="col">Picture</th>
               <th scope="col" onClick={this.handleSort}>Name</th>
               {/* <Sort employees={this.state.employees} /> */}
               <th scope="col">Email</th>
@@ -143,24 +126,6 @@ class Employees extends Component {
             ))}
           </tbody>
         </table>
-
-
-
-        {/* <button
-          onClick={this.handleReset}
-          className="btn btn-primary btn-sm m-2"
-        >
-          Reset Employees
-        </button>
-
-        {this.state.employees.map(employee => (
-          <Employee
-            key={employee.id}
-            onDelete={this.handleDelete}
-            onIncrement={this.handleIncrement}
-            employee={employee}
-          />
-        ))} */}
       </div>
     );
   }
