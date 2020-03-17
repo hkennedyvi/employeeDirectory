@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import Employee from "./employee";
 import API from "../utils/API";
-import Search from "./search";
+// import Search from "./search";
 // import Sort from "./sort";
 
 class Employees extends Component {
@@ -82,14 +82,16 @@ class Employees extends Component {
     let employees = [...this.state.employees];
     let firstEmployee = employees[0].name.toLowerCase().split(" ")[1];
     let secondEmployee = employees[1].name.toLowerCase().split(" ")[1];
-    if(firstEmployee > secondEmployee){
+    let asc = firstEmployee > secondEmployee;
+    let desc = firstEmployee < secondEmployee;
+    if(asc){
       employees.sort((a, b) => {
         let employeeA = a.name.toLowerCase().split(" ")[1];
         let employeeB = b.name.toLowerCase().split(" ")[1];
         return (employeeA < employeeB) ? -1 : (employeeA > employeeB) ? 1 : 0;
       });
       this.setState({ employees });
-    }  else if(firstEmployee < secondEmployee) {
+    }  else if(desc) {
       employees.sort((b, a) => {
         let employeeA = a.name.toLowerCase().split(" ")[1];
         let employeeB = b.name.toLowerCase().split(" ")[1];
@@ -104,7 +106,6 @@ class Employees extends Component {
   render() {
     return (
       <div>
-        <Search />
         <table className="table table-hover table-dark">
           <thead>
             <tr>
