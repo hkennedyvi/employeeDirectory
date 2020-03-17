@@ -1,15 +1,17 @@
 import React, { Component } from "react";
 // import Employee from "./employee";
 import API from "../utils/API";
+import Search from "./search";
+// import Sort from "./sort";
 
 class Employees extends Component {
 
   state = {
     employees: [
-      { id: 1, points: 100, name: "Joe Somebody", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
-      { id: 2, points: 150, name: "Joe Somebody", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
-      { id: 3, points: 230, name: "Joe Somebody", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
-      { id: 4, points: 300, name: "Joe Somebody", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
+      { id: 1, points: 100, name: "Joe Z", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
+      { id: 2, points: 150, name: "Joe D", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
+      { id: 3, points: 230, name: "Joe A", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
+      { id: 4, points: 300, name: "Joe L", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
       { id: 5, points: 100, name: "Joe Somebody", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
       { id: 6, points: 150, name: "Joe Somebody", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
       { id: 7, points: 230, name: "Joe Somebody", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
@@ -78,22 +80,37 @@ class Employees extends Component {
 
   handleSort = () => {
     let employees = [...this.state.employees];
-    employees.sort((a, b) => {
-      let employeeA = a.name.toLowerCase().split(" ")[1];
-      let employeeB = b.name.toLowerCase().split(" ")[1];
-      return (employeeA < employeeB) ? -1 : (employeeA > employeeB) ? 1 : 0;
-    });
-    this.setState({ employees });
+    let firstEmployee = employees[0].name.toLowerCase().split(" ")[1];
+    let secondEmployee = employees[1].name.toLowerCase().split(" ")[1];
+    if(firstEmployee > secondEmployee){
+      employees.sort((a, b) => {
+        let employeeA = a.name.toLowerCase().split(" ")[1];
+        let employeeB = b.name.toLowerCase().split(" ")[1];
+        return (employeeA < employeeB) ? -1 : (employeeA > employeeB) ? 1 : 0;
+      });
+      this.setState({ employees });
+    }  else if(firstEmployee < secondEmployee) {
+      employees.sort((b, a) => {
+        let employeeA = a.name.toLowerCase().split(" ")[1];
+        let employeeB = b.name.toLowerCase().split(" ")[1];
+        return (employeeA < employeeB) ? -1 : (employeeA > employeeB) ? 1 : 0;
+      });
+      this.setState({ employees });
+    }
+    
+    
   }
 
   render() {
     return (
       <div>
+        <Search />
         <table className="table table-hover table-dark">
           <thead>
             <tr>
               <th scope="col">Pic</th>
               <th scope="col" onClick={this.handleSort}>Name</th>
+              {/* <Sort employees={this.state.employees} /> */}
               <th scope="col">Email</th>
               <th scope="col">Phone</th>
               <th scope="col">Message/Remove</th>
