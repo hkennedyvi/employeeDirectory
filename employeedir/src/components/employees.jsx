@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import API from "../utils/API";
 // import Search from "./search";
 // import Sort from "./sort";
+import NavBar from "./navbar";
 
 class Employees extends Component {
 
@@ -12,12 +13,12 @@ class Employees extends Component {
       { id: 2, points: 150, name: "Joe D", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
       { id: 3, points: 230, name: "Joe A", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
       { id: 4, points: 300, name: "Joe L", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
-      { id: 5, points: 100, name: "Joe Somebody", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
-      { id: 6, points: 150, name: "Joe Somebody", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
-      { id: 7, points: 230, name: "Joe Somebody", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
-      { id: 8, points: 300, name: "Joe Somebody", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
-      { id: 9, points: 300, name: "Joe Somebody", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
-      { id: 10, points: 300, name: "Joe Somebody", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" }
+      { id: 5, points: 100, name: "Joe G", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
+      { id: 6, points: 150, name: "Joe B", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
+      { id: 7, points: 230, name: "Joe X", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
+      { id: 8, points: 300, name: "Joe N", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
+      { id: 9, points: 300, name: "Joe F", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
+      { id: 10, points: 300, name: "Joe Y", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" }
     ]
   };
 
@@ -115,6 +116,7 @@ class Employees extends Component {
   render() {
     return (
       <div>
+        <NavBar />
         <table className="table table-hover table-dark">
           <thead>
             <tr>
