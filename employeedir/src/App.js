@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import NavBar from "./components/navbar";
+// import NavBar from "./components/navbar";
 import Employees from "./components/employees";
 // import Search from "./components/search"
 

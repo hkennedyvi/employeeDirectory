@@ -99,7 +99,7 @@ class Employees extends Component {
   render() {
     return (
       <div>
-        <NavBar />
+        <NavBar employees={this.state.employees}/>
         <table className="table table-hover table-dark">
           <thead>
             <tr>
