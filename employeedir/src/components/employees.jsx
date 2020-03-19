@@ -96,10 +96,26 @@ class Employees extends Component {
     }
   }
 
+  // handleSearching = event => {
+  // //   console.log(this.state);
+  // //   console.log(this.props.searchTerm)
+  // //   console.log("State", this.state.searchTerm);
+  // //   let userSearch = event.target.value;
+  // //   this.setState({searchTerm: userSearch});
+  // //   this.value = this.state.searchTerm;
+  // //   // this.setState({searchTerm: userSearch});
+  // //   // console.log("SEARCHING...", userSearch);
+  // //   // console.log("State", this.state.searchTerm);
+  // //   // console.log("EVENT", event)
+  // }
+
   render() {
     return (
       <div>
-        <NavBar employees={this.state.employees}/>
+        <NavBar
+          employees={this.state.employees}
+          handleSearching={this.handleSearching}
+        />
         <table className="table table-hover table-dark">
           <thead>
             <tr>

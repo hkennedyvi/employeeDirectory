@@ -11,7 +11,10 @@ class NavBar extends Component {
     return (
       <nav className="navbar navbar-dark bg-dark">
         <div className="navbar-brand mb-0 h1">EMPLOYEE DIRECTORY<i className="fas fa-users ml-3"></i></div>
-        <Search employees={this.state.employees}/>
+        <Search 
+        employees={this.state.employees}
+        handleSearching={this.props.handleSearching}
+        />
       </nav>
     );
   }
