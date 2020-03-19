@@ -54,6 +54,7 @@ function Search(props) {
         let userSearch = event.target.value.toLowerCase();
         let employees = props.employees.employees;
         setSearchTerm(userSearch);
+        // eslint-disable-next-line array-callback-return
         employees.map(employee => {
             let firstName = employee.name.toLowerCase().split(" ")[0];
             let lastName = employee.name.toLowerCase().split(" ")[1];
