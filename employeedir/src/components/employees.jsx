@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 // import Employee from "./employee";
-import API from "../utils/API";
+import API from "../utils/API"; 
 // import Search from "./search";
-// import Sort from "./sort";
+//import Sort from "./sort";
 import NavBar from "./navbar";
 
 class Employees extends Component {
@@ -19,8 +19,48 @@ class Employees extends Component {
       { id: 8, points: 300, name: "Joe N", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
       { id: 9, points: 300, name: "Joe F", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
       { id: 10, points: 300, name: "Joe Y", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" }
-    ]
+    ],
+    searchTerm: ''
   };
+
+   handleSearch = event => {
+        event.preventDefault();
+        const existingSearchTerm = this.state.searchTerm;
+        let searchTerm = existingSearchTerm + event.target.value;
+        event.target.value = searchTerm;
+        searchTerm = searchTerm.toLowerCase();
+  
+      
+       console.log(searchTerm);
+        const employees = this.state.employees.filter(
+           employee => {
+             let values = Object.values(employee.name)
+             .join("")
+             .toLowerCase();
+             return values.indexOf(searchTerm) !== -1;
+             
+           });
+           console.log(employees);
+        this.setState({ employees: employees, searchTerm: searchTerm });
+
+    }
+    
+    handleInputChange = event => {
+        //et userSearch = event.target.value.toLowerCase();
+        let employees = this.state.employees;
+        console.log(employees);
+        //setSearchTerm(userSearch);
+        // eslint-disable-next-line array-callback-return
+        employees.map(employee => {
+            // let firstName = employee.name.toLowerCase().split(" ")[0];
+            // let lastName = employee.name.toLowerCase().split(" ")[1];
+            // if (userSearch === firstName) {
+            //     alert("We have an employee with this first name");
+            // } else if (userSearch === lastName) {
+            //     alert("We have an employee with this last name");
+            // } else return employee;
+        });
+    };
 
   componentDidMount() {
     this.findEmployees();
@@ -114,7 +154,7 @@ class Employees extends Component {
       <div>
         <NavBar
           employees={this.state.employees}
-          handleSearching={this.handleSearching}
+          handleSearching={this.handleSearch}
         />
         <table className="table table-hover table-dark">
           <thead>

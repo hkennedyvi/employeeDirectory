@@ -1,44 +1,19 @@
-// import React, { Component } from 'react';
-import React, { useState } from 'react';
+import React from "react";
 
-function Search(props) {
-
-    const [searchTerm, setSearchTerm] = useState("");
-
-    const handleSearch = event => {
-        event.preventDefault();
-        console.log("You searched for: " + searchTerm);
-    }
-    const handleInputChange = event => {
-        let userSearch = event.target.value.toLowerCase();
-        let employees = props.employees.employees;
-        setSearchTerm(userSearch);
-        // eslint-disable-next-line array-callback-return
-        employees.map(employee => {
-            let firstName = employee.name.toLowerCase().split(" ")[0];
-            let lastName = employee.name.toLowerCase().split(" ")[1];
-            if (userSearch === firstName) {
-                alert("We have an employee with this first name");
-            } else if (userSearch === lastName) {
-                alert("We have an employee with this last name");
-            } else return employee;
-        })
-    };
-
+const Search = (props) => {
     return (
-
         <div className="mt-3 mr-5 float-right">
             <form className="search">
                 <div className="form-group">
                     <input
-                        value={searchTerm}
+                        value=""
                         // onChange={handleInputChange}
-                        onChange={handleInputChange}
+                        onChange={(event) => { props.handleSearching(event) }}
                         placeholder="Find Employee..."></input>
-                    <button type="submit"
+                    {/* <button type="submit"
                         className="btn btn-success"
-                        onClick={handleSearch}
-                    ><i className="fas fa-search"></i></button>
+                        onClick={(e)encodeURI}
+                    ><i className="fas fa-search"></i></button> */}
                 </div>
             </form>
         </div>
