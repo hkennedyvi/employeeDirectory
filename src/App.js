@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-// import NavBar from "./components/navbar";
-import Employees from "./components/employees";
-// import Search from "./components/search"
+import Directory from "./pages/Directory"
 
 class App extends Component {
 
@@ -9,9 +7,7 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        {/* <NavBar /> */}
-        {/* <Search /> */}
-        <Employees />
+        <Directory />
       </React.Fragment>
     );
   }

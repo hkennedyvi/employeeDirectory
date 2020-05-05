@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import Employee from "./employee";
-import API from "../utils/API"; 
+import API from "../utils/API";
 // import Search from "./search";
 //import Sort from "./sort";
 import NavBar from "./navbar";
@@ -20,47 +20,64 @@ class Employees extends Component {
       { id: 9, points: 300, name: "Joe F", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" },
       { id: 10, points: 300, name: "Joe Y", email: "gmail", phone: "503-123-4567", imageUrl: "https://picsum.photos/100" }
     ],
-    searchTerm: ''
+    searchTerm: ""
   };
 
-   handleSearch = event => {
-        event.preventDefault();
-        const existingSearchTerm = this.state.searchTerm;
-        let searchTerm = existingSearchTerm + event.target.value;
-        event.target.value = searchTerm;
-        searchTerm = searchTerm.toLowerCase();
-  
-      
-       console.log(searchTerm);
-        const employees = this.state.employees.filter(
-           employee => {
-             let values = Object.values(employee.name)
-             .join("")
-             .toLowerCase();
-             return values.indexOf(searchTerm) !== -1;
-             
-           });
-           console.log(employees);
-        this.setState({ employees: employees, searchTerm: searchTerm });
+  employeeSearch = event => {
+    console.log(event.target.value);
+    let userSearch = event.target.value;
+    this.setState({ searchTerm: userSearch });
+    console.log(this.state.searchTerm);
+    // //   this.setState({searchTerm: userSearch});
+    // const searchedResults = this.state.employees.filter(item => {
+    //   let values = Object.values(item)
+    //     .join("")
+    //     .toLowerCase();
+    //   // console.log(values);
+    //   return values.indexOf(filter.toLowerCase()) !== -1;
+    // });
+    // this.setState({ searchTerm: searchedResults });
+    // console.log(searchedResults);
+  }
 
-    }
-    
-    handleInputChange = event => {
-        //et userSearch = event.target.value.toLowerCase();
-        let employees = this.state.employees;
-        console.log(employees);
-        //setSearchTerm(userSearch);
-        // eslint-disable-next-line array-callback-return
-        employees.map(employee => {
-            // let firstName = employee.name.toLowerCase().split(" ")[0];
-            // let lastName = employee.name.toLowerCase().split(" ")[1];
-            // if (userSearch === firstName) {
-            //     alert("We have an employee with this first name");
-            // } else if (userSearch === lastName) {
-            //     alert("We have an employee with this last name");
-            // } else return employee;
-        });
-    };
+  handleSearch = event => {
+    event.preventDefault();
+    const existingSearchTerm = this.state.searchTerm;
+    let searchTerm = existingSearchTerm + event.target.value;
+    event.target.value = searchTerm;
+    searchTerm = searchTerm.toLowerCase();
+
+
+    console.log(searchTerm);
+    const employees = this.state.employees.filter(
+      employee => {
+        let values = Object.values(employee.name)
+          .join("")
+          .toLowerCase();
+        return values.indexOf(searchTerm) !== -1;
+
+      });
+    console.log(employees);
+    this.setState({ employees: employees, searchTerm: searchTerm });
+
+  }
+
+  handleInputChange = event => {
+    //et userSearch = event.target.value.toLowerCase();
+    let employees = this.state.employees;
+    console.log(employees);
+    //setSearchTerm(userSearch);
+    // eslint-disable-next-line array-callback-return
+    employees.map(employee => {
+      // let firstName = employee.name.toLowerCase().split(" ")[0];
+      // let lastName = employee.name.toLowerCase().split(" ")[1];
+      // if (userSearch === firstName) {
+      //     alert("We have an employee with this first name");
+      // } else if (userSearch === lastName) {
+      //     alert("We have an employee with this last name");
+      // } else return employee;
+    });
+  };
 
   componentDidMount() {
     this.findEmployees();
@@ -71,7 +88,10 @@ class Employees extends Component {
     API.getEmployees()
       .then(res => {
 
+        // let employeeList = res.data.results;
+        // this.setState( {employees: employeeList} )
         res.data.results.map((employee, index) => {
+
           let email = employee.email;
           let phone = employee.phone;
           let name = employee.name.first + " " + employee.name.last;
@@ -136,18 +156,18 @@ class Employees extends Component {
     }
   }
 
-  // handleSearching = event => {
-  // //   console.log(this.state);
-  // //   console.log(this.props.searchTerm)
-  // //   console.log("State", this.state.searchTerm);
-  // //   let userSearch = event.target.value;
-  // //   this.setState({searchTerm: userSearch});
-  // //   this.value = this.state.searchTerm;
-  // //   // this.setState({searchTerm: userSearch});
-  // //   // console.log("SEARCHING...", userSearch);
-  // //   // console.log("State", this.state.searchTerm);
-  // //   // console.log("EVENT", event)
-  // }
+  handleSearching = event => {
+    console.log(this.state);
+    console.log(this.props.searchTerm)
+    console.log("State", this.state.searchTerm);
+    let userSearch = event.target.value;
+    this.setState({ searchTerm: userSearch });
+    this.value = this.state.searchTerm;
+    this.setState({ searchTerm: userSearch });
+    console.log("SEARCHING...", userSearch);
+    console.log("State", this.state.searchTerm);
+    console.log("EVENT", event)
+  }
 
   render() {
     return (
@@ -155,6 +175,7 @@ class Employees extends Component {
         <NavBar
           employees={this.state.employees}
           handleSearching={this.handleSearch}
+          employeeSearch={this.employeeSearch}
         />
         <table className="table table-hover table-dark">
           <thead>
@@ -168,18 +189,20 @@ class Employees extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.employees.map(employee => (
-              <tr key={employee.id}>
-                <th scope="row"><img src={employee.imageUrl} alt=""></img></th>
-                <td>{employee.name}</td>
-                <td>{employee.email}</td>
-                <td>{employee.phone}</td>
-                <td>
-                  <button className="btn btn-info" onClick={() => this.handleMessage(employee.email)}><i className="fas fa-envelope"></i></button>
-                  <button className="btn btn-danger" onClick={() => this.handleDelete(employee.id)}><i className="fas fa-times"></i></button>
-                </td>
-              </tr>
-            ))}
+            {this.state.employees.map(employee => {
+              return (
+                <tr key={employee.id}>
+                  <th scope="row"><img src={employee.imageUrl} alt=""></img></th>
+                  <td>{employee.name}</td>
+                  <td>{employee.email}</td>
+                  <td>{employee.phone}</td>
+                  <td>
+                    <button className="btn btn-info" onClick={() => this.handleMessage(employee.email)}><i className="fas fa-envelope"></i></button>
+                    <button className="btn btn-danger" onClick={() => this.handleDelete(employee.id)}><i className="fas fa-times"></i></button>
+                  </td>
+                </tr>
+              )
+              })}
           </tbody>
         </table>
       </div>

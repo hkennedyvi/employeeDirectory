@@ -1,6 +1,6 @@
 import React from "react";
 
-const Search = (props) => {
+const Search = ({ employeeSearch }) => {
     return (
         <div className="mt-3 mr-5 float-right">
             <form className="search">
@@ -8,7 +8,7 @@ const Search = (props) => {
                     <input
                         value=""
                         // onChange={handleInputChange}
-                        onChange={(event) => { props.handleSearching(event) }}
+                        onChange={(event) => employeeSearch(event)}
                         placeholder="Find Employee..."></input>
                     {/* <button type="submit"
                         className="btn btn-success"
