@@ -9,18 +9,15 @@ Users can sort alphabetically by last name, search for a specified employee, cop
 
 ## Getting Started
 
-* 1. Navigate to the directory that you would like to clone the repository into.
+1. From your terminal, navigate to the directory that you would like to clone the repository into.
 
-* 2. Clone this repo to your local machine using 
+2. Clone this repo to your local machine using 
 ```
 git clone git@github.com:hkennedyvi/employeeDirectory.git
 ```
+3. While at the root level of the repo, install the dependencies with `npm install`
 
-* 3. While at the root level of the repo, in your terminal run 
-```
-npm install
-npm start
-```
+4. Run the application using `npm start`
 
 ## Built With
 
