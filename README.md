@@ -7,30 +7,20 @@ Users can sort alphabetically by last name, search for a specified employee, cop
 
 [DEPLOYED APP](https://onemeanteam.herokuapp.com/)
 
-## Built With
+## Getting Started
 
-* [REACT](https://reactjs.org/) 
-* [BOOTSTRAP](https://getbootstrap.com/)
-* [RANDOM USER API](https://randomuser.me/) 
+* 1. Navigate to the directory that you would like to clone the repository into.
 
-## How it
+* 2. Clone this repo to your local machine using 
+```
+git clone git@github.com:hkennedyvi/employeeDirectory.git
+```
 
-## Authors
-
-* **Howard Kennedy** 
-
-# Employee Directory
-
-A React based application for managing an Employee Directory. <br><br>
-Users can sort alphabetically by last name, search for a specified employee, copy an email address to their clipboard, and remove employees from the active roster. 
-
-## Deployed App: [Take me there](https://onemeanteam.herokuapp.com/)
-
-## Description
-
-A note taking application using basic CRUD principles and an Express server.
-
-Users can create and save notes, view previously saved notes, and delete saved notes. 
+* 3. While at the root level of the repo, in your terminal run 
+```
+npm install
+npm start
+```
 
 ## Built With
 
@@ -42,8 +32,7 @@ Users can create and save notes, view previously saved notes, and delete saved n
 
 ![](https://media.giphy.com/media/dUBPehQjxyQc0TaytE/giphy.gif)
 
-
-## Author
+## Authors
 
 * **Howard Kennedy** 
 
